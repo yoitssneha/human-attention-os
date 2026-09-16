@@ -1,5 +1,9 @@
 # Human Attention OS
 
+> **Humans should spend their time and energy on what requires human judgment. AI should handle the rest.**
+
+Read the first-principles vision in [`VISION.md`](VISION.md).
+
 ## The vision
 
 AI is not going away. We are entering an era where communication, coordination, and routine execution can increasingly be handled by intelligent systems.
@@ -73,4 +77,3 @@ The system understands the context, performs the coordination, updates the syste
 > **Automate communication. Protect human attention. Build organizations around what only humans can do.**
 
 This is a step toward a world where AI does not merely answer questions or generate content. It continuously turns intent into execution—while humans retain responsibility for the choices that matter.
-
