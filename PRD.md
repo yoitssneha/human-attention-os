@@ -1,205 +1,303 @@
-# Human Attention OS — PRD
+# Human Attention OS — First-Principles PRD
 
-## 1. Product brief
+## 1. First principle
 
-Human Attention OS is a Sarvam-native internal system that reduces coordination overhead by turning everyday communication into reliable execution. It handles predictable communication and operational follow-through, and involves people only when judgment or accountability is required.
+As AI becomes capable of handling more communication and execution, human attention becomes the scarce resource.
 
-This first version is an internal dogfooding product for Sarvam—not a general-purpose AI employee and not a replacement for existing workplace tools.
+> **Humans should spend their time and energy on what requires human judgment. AI should handle the rest.**
 
-## 2. User and problem
+Human Attention OS is a context-aware execution layer that protects human attention. It understands what is happening across an organization, handles predictable communication and follow-through, and involves people only when their judgment, creativity, empathy, accountability, or relationships are genuinely needed.
 
-### Primary user
+This is a pre-AGI product, but the principle remains relevant as AI becomes more capable: humans must learn to live and work alongside AI without spending their lives coordinating it.
 
-Sarvam employees and managers who spend time chasing updates, converting conversations into tasks, sending routine follow-ups, and finding the context needed to make decisions.
+## 2. The Sarvam insight
 
-### Problem
+India’s AI-native organizations will not be built only around English, keyboards, dashboards, and standardized software workflows.
 
-Important work is distributed across meetings, chats, email, documents, and informal conversations. People spend too much time coordinating the work instead of doing the work. Existing AI tools usually summarize communication; they do not reliably carry routine actions through to completion.
+They will be multilingual, voice-heavy, code-mixed, distributed, and connected through many channels. Language diversity should not create operational fragmentation.
 
-## 3. Product hypothesis
+> **Sarvam can make organizational execution language-independent: people communicate naturally, while AI converts intent into common executable actions.**
 
-If Sarvam employees can communicate naturally with a context-aware assistant, and that assistant can safely execute predictable follow-through, then employees will spend less time on coordination and more time on high-value judgment and execution.
+This is the Sarvam-native opportunity—not another English-first meeting assistant, but a multilingual language-to-execution layer for organizations.
 
-## 4. MVP scope
-
-### Core workflow: conversation to closure
-
-The MVP focuses on internal meetings and follow-ups:
-
-1. Ingest an approved meeting transcript, notes, or voice recording.
-2. Transcribe and identify the language using Sarvam APIs.
-3. Extract decisions, action items, owners, deadlines, dependencies, and uncertainty.
-4. Present the proposed actions for confirmation.
-5. Send a concise follow-up to the relevant people.
-6. Track status and ask for updates through an approved channel.
-7. Escalate overdue or blocked items to the correct owner or manager.
-8. Provide a daily summary of completed, blocked, overdue, and human-attention items.
-
-### Supported interaction
-
-- Text-first web interface for the initial pilot.
-- Voice input and spoken summaries using Sarvam speech APIs.
-- English, Hindi, and Hinglish initially; expand only after evaluation.
-- Human confirmation before external or high-impact actions.
-
-### Initial integrations
-
-Use the fewest integrations necessary for a meaningful pilot:
-
-- One meeting/transcript source.
-- One internal messaging channel.
-- One task or issue tracker.
-- A lightweight internal context store for people, teams, projects, and permissions.
-
-The exact tools should be selected based on what Sarvam already uses and can safely expose to a prototype.
-
-## 5. What is feasible now
-
-| Capability | MVP decision | Reason |
-|---|---|---|
-| Multilingual speech-to-text | Build | Directly aligned with Sarvam’s APIs |
-| Translation, transliteration, and code-mixed input | Build selectively | Strong Sarvam differentiation |
-| Action and deadline extraction | Build | Clear value and technically manageable |
-| Drafting follow-up messages | Build | Low-risk with confirmation |
-| Task creation and reminders | Build | Makes the product operational, not just summarization |
-| Overdue escalation | Build with rules | Deterministic and measurable |
-| Daily attention/exception briefing | Build | Demonstrates the core vision |
-| Context-aware responses | Build narrowly | Start with structured company context |
-| Voice command to create an action | Build as a pilot feature | Strong product identity, but limit commands |
-| Fully autonomous routine follow-through | Pilot carefully | Requires permissions, logging, and confidence thresholds |
-
-## 6. What is not feasible for the first version
-
-- Understanding all company knowledge without curated sources.
-- Replacing Slack, email, project management, CRM, or ERP systems.
-- Acting autonomously across every company system.
-- Making sensitive HR, finance, legal, hiring, or customer commitments.
-- Perfectly inferring ownership when the conversation is ambiguous.
-- Building a general-purpose agent for every employee workflow.
-- Supporting every Indian language on day one.
-- Monitoring every private conversation by default.
-- Measuring productivity by surveillance or employee activity tracking.
-- Building a standalone telephony or WhatsApp platform before proving the workflow.
-
-## 7. What we should build
-
-### A. Context layer
-
-Create a permissioned, structured representation of:
-
-- people and roles;
-- teams and reporting relationships;
-- projects and priorities;
-- common workflows;
-- approved communication channels;
-- action ownership and escalation rules.
-
-The system should retrieve only the context needed for a task and clearly show its source.
-
-### B. Action layer
-
-Represent every extracted commitment as a durable object:
-
-```json
-{
-  "title": "Send enterprise demo proposal",
-  "owner": "person_id",
-  "due_date": "2026-10-02",
-  "status": "needs_confirmation",
-  "source": "meeting_id",
-  "confidence": 0.91,
-  "escalation_rule": "manager_after_2_days_overdue"
-}
+```text
+Any language / voice / channel
+            ↓
+Sarvam understands intent and context
+            ↓
+Common executable action
+            ↓
+AI coordinates and follows through
+            ↓
+Human attention only when necessary
 ```
 
-### C. Human-attention layer
+## 3. Product definition
 
-The main interface should not be an activity feed. It should be an exception inbox containing:
+Human Attention OS is a Sarvam-native system that learns what matters to people and organizations, handles everything operationally predictable, and surfaces only high-value human work.
 
-- decisions waiting for the user;
-- blocked or overdue work;
-- ambiguous ownership or deadlines;
-- actions requiring approval;
-- high-impact changes;
-- relevant context and recommended next steps.
+It is not:
 
-### D. Safety and trust layer
+- a meeting-notes product;
+- a new chat platform;
+- a project-management replacement;
+- a generic AI employee;
+- an employee-surveillance system.
 
-- Explicit permissions by user and system.
-- Confirmation thresholds based on action risk.
-- Full audit trail for every automated action.
-- Confidence scores and visible source context.
-- Easy undo or correction where possible.
-- No silent sending of sensitive messages.
-- Clear retention and deletion controls for audio and transcripts.
+It is an **attention allocation and execution layer** that sits above existing communication and work systems.
 
-## 8. What we should not build
+## 4. The problem
 
-- A new chat platform.
-- A new project-management system.
-- A broad autonomous “AI employee.”
+People spend too much time on work around work:
+
+- writing routine messages;
+- repeating context;
+- coordinating across teams;
+- finding owners;
+- scheduling and rescheduling;
+- chasing updates;
+- asking for status;
+- copying information between tools;
+- escalating overdue work;
+- deciding which notifications deserve attention.
+
+Existing AI tools often summarize communication. They do not reliably carry predictable work through to completion or decide whether an item deserves human attention in the first place.
+
+## 5. Core product insight: the Human Attention Firewall
+
+The system should not only automate work after it reaches a human. It should decide whether that work deserves to reach a human at all.
+
+Every incoming request, message, meeting invite, escalation, or task is evaluated against context, urgency, value, risk, and the person’s role.
+
+The system can:
+
+- resolve it automatically;
+- delegate it;
+- batch it;
+- defer it;
+- decline or remove it;
+- ask one focused clarification question;
+- surface it to the right human with the relevant context.
+
+```text
+Incoming communication
+        ↓
+AI understands language, intent, context, and risk
+        ↓
+Resolve / delegate / batch / defer / decline
+        ↓
+Human attention only when justified
+```
+
+## 6. Initial users and wedge
+
+### Initial users
+
+Start with **Sarvam Strategy & Operations**, then validate with Partnerships and Sales.
+
+These teams are the right starting point because they coordinate across functions, manage many follow-ups, work across multiple tools, and can measure operational improvement.
+
+### First workflow
+
+Automate **cross-functional initiative follow-through**:
+
+```text
+Conversation
+→ commitment identified
+→ owner and deadline assigned
+→ follow-up sent
+→ progress checked
+→ completion evidence verified
+→ delay escalated
+→ action closed
+```
+
+This begins where existing meeting AI usually stops.
+
+### Hero outcome
+
+> **Routine communication happens without human involvement, while overdue and blocked work decreases.**
+
+## 7. MVP scope
+
+The MVP accepts approved inputs from meeting notes, transcripts, recordings, email threads, and Slack or internal chat messages.
+
+It then:
+
+1. Identifies commitments, decisions, requests, owners, deadlines, dependencies, and uncertainty.
+2. Converts commitments into structured actions.
+3. Uses company and personal context to propose the correct owner and priority.
+4. Drafts or sends low-risk internal follow-ups.
+5. Creates tasks in one connected task system.
+6. Requests status updates at context-aware times.
+7. Verifies completion through explicit confirmation and system evidence.
+8. Escalates blocked or overdue work.
+9. Provides a daily human-attention briefing.
+
+## 8. Interaction model
+
+- **Voice:** delegate work, give updates, ask questions, and report completion.
+- **Text:** correct, clarify, and instruct the system.
+- **Web:** review actions, context, permissions, and exceptions.
+- **Background automation:** handle approved routine work.
+- **Exception inbox:** show decisions, risks, ambiguity, blocked work, and high-value human actions.
+
+The primary experience is not an activity feed. It is a focused view of what actually needs the person.
+
+## 9. Context and learning
+
+The system needs a permissioned context layer containing people and roles, teams and reporting relationships, projects and priorities, responsibilities and ownership patterns, policies and approval rules, communication preferences, deadlines and dependencies, connected systems and available actions, and relevant documents and approved conversation history.
+
+It learns at two levels:
+
+### Personal context
+
+What an individual prefers to automate, review, delay, delegate, or escalate.
+
+### Organizational context
+
+How Sarvam works, who owns what, which workflows exist, and what policies apply.
+
+Learning signals include explicit approvals, corrections, rejections, user instructions, repeated edits, ignored notifications, accepted suggestions, delegation patterns, and response behavior.
+
+Explicit instructions are stronger than inferred behavior. Inferences remain provisional until confirmed.
+
+## 10. Autonomy and trust
+
+### Automatic
+
+- Low-risk internal reminders
+- Routine status checks
+- Approved follow-up messages
+- Task creation
+- Daily summaries
+- Low-risk scheduling
+- Updates to connected task systems
+
+### Confirmation required
+
+- Ambiguous ownership
+- Changed deadlines
+- Important internal messages
+- Manager escalations
+- Shared project updates
+
+### Human approval required
+
+- External communication
+- Customer or partner commitments
+- Financial, legal, HR, or hiring actions
+- Sensitive information
+- Irreversible actions
+- High-impact decisions
+
+The system must not guess when uncertainty could create operational, reputational, or safety risk.
+
+Required controls include explicit user and administrator permissions, role-based access, visible source context, confidence scores, a complete action audit trail, easy correction and undo where possible, retention and deletion controls for audio and transcripts, and zero tolerance for unauthorized actions.
+
+## 11. Sarvam-native architecture
+
+```text
+Sarvam speech, language, translation, and voice capabilities
+                         ↓
+Context, memory, permissions, and policy layer
+                         ↓
+Intent, commitment, risk, and attention classification
+                         ↓
+Action and workflow execution layer
+                         ↓
+Connected company tools
+                         ↓
+Exception inbox and human feedback
+```
+
+Sarvam’s differentiation is the combination of Indian-language speech and text understanding, voice-first interaction, code-mixed communication, translation and transliteration, language-independent intent extraction, enterprise permissions and context, and reliable execution and follow-through.
+
+The product should dogfood Sarvam’s own models and Voice Agent capabilities internally, then become a reference architecture for multilingual enterprise operations.
+
+## 12. What to build now
+
+- A simple internal web application.
+- Voice input and spoken summaries.
+- Approved meeting, email, and Slack inputs.
+- Structured commitment extraction.
+- Owner, deadline, priority, and dependency detection.
+- Follow-up drafting.
+- One task-system integration.
+- Status collection and evidence-based completion.
+- Adaptive reminders.
+- Escalation rules.
+- Exception inbox.
+- Personal and organizational feedback loops.
+- Audit history and permissions.
+
+## 13. What not to build now
+
+- A replacement for Slack, email, or project-management tools.
+- A generic autonomous AI employee.
+- Continuous monitoring of private conversations.
+- Autonomous external communication.
+- Sensitive finance, HR, legal, hiring, or customer decisions.
+- Every department and workflow at once.
+- Every Indian language on day one.
+- A standalone telephony or WhatsApp platform.
 - A custom foundation model.
-- A universal company knowledge graph before validating use cases.
-- A polished consumer app before internal dogfooding.
-- Dozens of connectors before one workflow shows measurable value.
-- Automation that optimizes message volume instead of human attention.
+- A universal knowledge graph before validating the workflow.
+- Dozens of integrations before one workflow shows measurable value.
+- Automation that increases message volume instead of protecting attention.
 
-## 9. Success metrics
+## 14. Pilot plan
 
-### Pilot outcome metrics
+### Phase 0 — Discover
 
-- Reduction in time spent creating and sending follow-ups.
-- Percentage of extracted actions confirmed as correct.
-- Percentage of actions completed on time.
-- Reduction in overdue or ownerless actions.
-- Time from conversation end to action creation.
-- Number of routine coordination messages handled automatically.
+Interview 8–12 Strategy & Operations users. Map recurring coordination work, current tools, delays, approval patterns, and the baseline time spent on follow-ups.
+
+### Phase 1 — Observe
+
+Process approved inputs in read-only mode. Extract actions and propose owners, deadlines, messages, and escalation rules. No autonomous actions.
+
+### Phase 2 — Assist
+
+Allow users to approve messages, create tasks, request updates, and schedule reminders. Add audit logs, corrections, and user feedback.
+
+### Phase 3 — Execute safely
+
+Allow low-risk internal actions to run automatically when permissions, confidence, and reversibility thresholds are satisfied.
+
+### Phase 4 — Expand
+
+Validate with Partnerships or Sales. Only then decide whether to make this an internal operating layer, a Sarvam reference application, or a broader platform capability.
+
+## 15. Success metrics
+
+### Outcome metrics
+
+- Reduction in time spent on routine follow-ups.
+- Reduction in overdue commitments.
+- Reduction in ownerless actions.
+- Faster time from conversation to execution.
+- Percentage of routine communication handled automatically.
 - Percentage of escalations that genuinely require human attention.
+- User-reported reduction in cognitive load.
 
-### Guardrail metrics
+### Quality and trust metrics
 
-- Incorrect owner assignment rate.
-- Incorrect deadline or intent rate.
-- Unauthorized action rate: target zero.
-- User correction and override rate.
+- Correct owner assignment rate.
+- Correct deadline and intent extraction rate.
 - False escalation rate.
-- Audio/transcript privacy incidents: target zero.
+- User correction and override rate.
+- Unauthorized action rate: target zero.
+- Audio or transcript privacy incidents: target zero.
 
-## 10. Pilot plan
+## 16. Intern-sized deliverable
 
-### Phase 0 — Discovery and baseline
+The project should deliver one credible vertical slice, not the whole vision:
 
-Interview 8–12 Sarvam employees across functions. Map recurring coordination workflows and establish a baseline for follow-up time, overdue actions, and approval delays.
+> **One multilingual communication source → structured commitments → confirmed follow-up → status tracking → completion verification → overdue escalation → human-attention briefing.**
 
-### Phase 1 — Read-only intelligence
+The highest-value contribution is to identify the right internal workflow, design the context and permission model, dogfood Sarvam’s capabilities, measure before-and-after impact, and produce a prototype that Sarvam could credibly show to an enterprise customer.
 
-Process approved transcripts or notes. Extract decisions and actions, but do not send or update anything automatically. Measure extraction quality and user trust.
+## 17. Final product promise
 
-### Phase 2 — Confirmed execution
-
-Allow users to approve drafted messages, create tasks, and schedule reminders. Add audit logs and corrections.
-
-### Phase 3 — Bounded autonomy
-
-Permit low-risk actions to execute automatically when confidence and permissions meet defined thresholds. Keep high-impact actions human-approved.
-
-### Phase 4 — Internal expansion decision
-
-Decide whether the product should remain an internal operating layer, become a customer reference application, or evolve into a broader platform capability.
-
-## 11. Intern-sized deliverable
-
-The first project should deliver a working vertical slice, not the whole vision:
-
-> **One multilingual conversation source → structured actions → confirmed follow-up → status tracking → overdue escalation → attention briefing.**
-
-The intern’s highest-value contribution is to identify the right operational workflow, design the context and permission model, measure the before/after impact, and produce a credible Sarvam-native prototype.
-
-## 12. Product boundary
-
-The product succeeds when it makes people less busy with communication—not when it automates the maximum number of actions.
-
-The governing rule is:
-
-> **Automate what is predictable. Escalate what is consequential. Protect human attention.**
+> **Automate what is predictable. Translate intent across language and context. Escalate what is consequential. Protect human attention.**
 
